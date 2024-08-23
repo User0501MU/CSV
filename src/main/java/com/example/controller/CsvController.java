@@ -1,5 +1,6 @@
 package com.example.controller;
 //
+
 //import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.ResponseBody;
 //
@@ -28,42 +29,46 @@ package com.example.controller;
 //	}
 //}
 
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class CsvController {
 
-    public static void main(String[] args) {
-        // コピー元とコピー先のファイルパスを指定
-        String sourceFilePath = "src/main/resources/CSV変換確定申告用：収入経費集計表.csv";
-        String destinationFilePath = "src/main/resources/CSV変換確定申告用：収入経費集計表お.csv";
+	public static void main(String[] args) {
+		// コピー元とコピー先のファイルパスを指定
+		String sourceFilePath = "src/main/resources/CSV変換確定申告用：収入経費集計表.csv";
+		String destinationFilePath = "src/main/resources/CSV変換確定申告用：収入経費集計表ぴ.csv";
 
-        // CSVファイルをコピーする処理を実行
-        String result = copyCsvFile(sourceFilePath, destinationFilePath);
+		// CSVファイルをコピーする処理を実行
+		String result = copyCsvFile(sourceFilePath, destinationFilePath);
 
-        // 処理結果をコンソールに表示
-        System.out.println(result);
-    }
+		// 処理結果をコンソールに表示
+		System.out.println(result);
+	}
 
-    private static String copyCsvFile(String sourceFilePath, String destinationFilePath) {
-        // FileReaderとFileWriterを使用してファイルを読み書きする
-        try (FileReader reader = new FileReader(sourceFilePath);
-             FileWriter writer = new FileWriter(destinationFilePath)) {
+	private static String copyCsvFile(String sourceFilePath, String destinationFilePath) {
+		// FileReaderとFileWriterを使用してファイルを読み書きする
+		try (FileReader reader = new FileReader(sourceFilePath);
+				FileWriter writer = new FileWriter(destinationFilePath)) {
 
-            int character;
-            // ファイルの内容を1文字ずつ読み込み、書き込み先ファイルに書き込む
-            while ((character = reader.read()) != -1) {
-                writer.write(character);
-            }
+			int character;
+			// ファイルの内容を1文字ずつ読み込み、書き込み先ファイルに書き込む
+			while ((character = reader.read()) != -1) {
+				writer.write(character);
+			}
+			// 成功メッセージを返す
+			String successMessage = "CSV file copied successfully to: （処理成功）" + destinationFilePath;
+			// 処理終了のメッセージを出力
+			System.out.println("CSV file copy process completed（処理終了）.");//★System.out.printlnがあるとよい
 
-            // 成功メッセージを返す
-            return "CSV file copied successfully to: " + destinationFilePath;
-        } catch (IOException e) {
-            // エラーメッセージを返す
-            e.printStackTrace();
-            return "Error occurred while copying CSV file.";
-        }
-    }
+			return successMessage;
+		} catch (IOException e) {
+			// エラーメッセージを返す
+			e.printStackTrace();
+			return "Error occurred while copying CSV file.";
+		}
+	}
 }
+
+
